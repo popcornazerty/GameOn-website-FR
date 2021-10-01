@@ -132,7 +132,42 @@ function validate() {
   }
 }
 
+let userLoggedIn = true;
 
+if (userLoggedIn) {
+   let welcomeMessage = 'Welcome back!';
+} else {
+   let welcomeMessage = 'Welcome new user!';
+}
+
+console.log(welcomeMessage); // renvoie une erreur
+
+
+//OR
+
+let userLoggedIn = true;
+let welcomeMessage = ''; // déclarer la variable ici
+
+if (userLoggedIn) {
+welcomeMessage = 'Welcome back!'; // modifier la variable extérieure
+} else {
+welcomeMessage = 'Welcome new user!'; // modifier la variable extérieure
+}
+
+console.log(welcomeMessage); // imprime 'Welcome back!'
+
+
+//OR
+
+if (firstUser.accountLevel === 'normal' ) {
+        console.log('You have a normal account!');
+  } else if (firstUser.accountLevel === 'premium' ) {
+        console.log('You have a premium account!');
+  } else if (firstUser.accountLevel === 'mega-premium' ) {
+        console.log('You have a mega premium account!');
+  }  else {
+        console.log('Unknown account type!');
+  }
 
 
 
