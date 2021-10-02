@@ -18,14 +18,17 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
-  
 }
 
 // Fermer la modal
 function closeModal() {
-  console.log('ICI');
   modalbg.style.display = "none";
 }
+
+/*function displayElement(element) {
+  element.style.display = "none";
+}
+closeModal(document.querySelector(".bground"));*/
 
 // Fermer la modal (event)
 document.getElementsByClassName('close')[0].onclick = function() {
@@ -34,6 +37,7 @@ document.getElementsByClassName('close')[0].onclick = function() {
 
 // Valider la modal
 function submitModal() {
+  let validateForm = true;
   // Prénom
   const inputFirstName = document.getElementById('first');
   const errorFirstName = document.getElementById('firstError');
@@ -43,6 +47,7 @@ function submitModal() {
     errorFirstName.style.color = 'red';
     errorFirstName.style.fontSize = '9px';
     inputFirstName.style.borderColor = 'red';
+    validateForm = false;
   } else {
     errorFirstName.innerText = '';
     inputFirstName.style.borderColor ='#ccc';
@@ -58,6 +63,7 @@ function submitModal() {
     errorLastName.style.color = 'red';
     errorLastName.style.fontSize = '9px';
     inputLastName.style.borderColor = 'red';
+    validateForm = false;
   } else {
     errorLastName.innerText = '';
     inputLastName.style.borderColor ='#ccc';
@@ -81,6 +87,7 @@ function submitModal() {
     errorEmail.style.color = 'red';
     errorEmail.style.fontSize = '9px';
     inputEmail.style.borderColor = 'red';
+    validateForm = false;
   }
 
   // Date de naissance
@@ -95,6 +102,42 @@ function submitModal() {
     errorDate.style.color = 'red';
     errorDate.style.fontSize ='9px';
     inputDate.style.borderColor = 'red';
+    validateForm = false;
+  }
+
+
+  // checkbox
+  
+  if (document.getElementById('checkbox1').checked == false) {
+    alert("Merci ce cocher la case \"J'ai lu et accepté les conditions d'utilisation.\"");
+    validateForm = false;
+  } 
+  if (document.getElementById('checkbox2').checked == false){
+    alert("Merci ce cocher la case \"Je souhaite être prévenu des prochains évènements.\""); 
+    validateForm = false;
+  }
+
+  if(validateForm) {
+    // redirection
+    closeModal();
+    openModalSuccess();
+    closeModalSuccess();  
+  }
+
+}
+
+function openModalSuccess() {
+  const modalSuccess = document.getElementById('modal-success');
+  modalSuccess.style.display = "block";
+  
+}
+
+function closeModalSuccess() {
+  const modalSuccessBtn = document.getElementById('modal-success-close');
+  modalSuccessBtn.onclick = function() {
+    const modalSuccess = document.getElementById('modal-success');
+    modalSuccess.style.display = "none";
+    console.log("close modal success");
   }
 }
 
@@ -124,14 +167,8 @@ else{
 }
 */
 
-function validate() {
-  if (document.getElementById('checkbox1').checked) {
-      alert("checked");
-  } else {
-      alert("You didn't check it! Let me check it for you.");
-  }
-}
 
+/*
 let userLoggedIn = true;
 
 if (userLoggedIn) {
@@ -144,7 +181,7 @@ console.log(welcomeMessage); // renvoie une erreur
 
 
 //OR
-
+/*
 let userLoggedIn = true;
 let welcomeMessage = ''; // déclarer la variable ici
 
@@ -168,6 +205,4 @@ if (firstUser.accountLevel === 'normal' ) {
   }  else {
         console.log('Unknown account type!');
   }
-
-
-
+*/
