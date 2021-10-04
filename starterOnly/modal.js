@@ -31,7 +31,7 @@ function closeModal() {
 closeModal(document.querySelector(".bground"));*/
 
 // Fermer la modal (event)
-document.getElementsByClassName('close')[0].onclick = function() {
+document.getElementsByClassName('close')[0,1].onClick = function() {
   closeModal();
 };
 
@@ -104,9 +104,36 @@ function submitModal() {
     inputDate.style.borderColor = 'red';
     validateForm = false;
   }
+  ////////////////////////////
+  
+  /////////////////////////
 
+// Verification villes 
+const checkboxClicked = document.getElementsByClassName('checkbox-input');
+const errorClick = document.getElementsByClassName('errorclick');
+if (checkboxClicked.value = true){
+  errorClick.innerText='';
+  
+} else {
+  errorClick.innerText = 'Merci de cocher au moins une ville';
+  //styles
+  errorClick.style.color = 'red';
+  errorClick.style.fontSize = '9px';
+  checkboxClicked.style.borderColor = 'red';
+  validationForm = false;
+}
 
-  // checkbox
+// regex validation email 
+function validateEmail(email) {
+  const regex  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+}
+//regex validation date de naissance
+function validateDate(date) {
+  const regex = /^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$/;
+  return regex.test(date);
+}
+  // Vérifications de l'acceptation des termes et conditions
   
   if (document.getElementById('checkbox1').checked == false) {
     alert("Merci ce cocher la case \"J'ai lu et accepté les conditions d'utilisation.\"");
@@ -144,17 +171,8 @@ function closeModalSuccess() {
 document.getElementsByClassName('btn-submit')[0].onclick = function() {
   submitModal();
 }
-// regex validation email 
-function validateEmail(email) {
-  const regex  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return regex.test(email);
-}
-//regex validation date de naissance
-function validateDate(date) {
-  const regex = /^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$/;
-  return regex.test(date);
-}
-// Vérifications de l'acceptation des termes et conditions
+
+
 
 /*
 const inputCheckbox = document.getElementById('checkbox1');
