@@ -66,7 +66,7 @@
 
       <div class="bground">
         <div class="content">
-          <span class="close"></span>
+          <span class="close" id="close"></span>
           <div class="modal-body">
             <form
               name="reserve"
@@ -123,7 +123,9 @@
               <div
                 class="formData">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99"
+              /><br>
+              <span id="errorQuantity"></span>
               </div>
               <p class="text-label">Quelles villes ?</p>
               <div
@@ -136,7 +138,9 @@
                   value="New York"
                 />
                 <label class="checkbox-label" for="location1">
-                  <span class="checkbox-icon"></span>
+                  <span class="checkbox-icon" id="icon1"></span>
+                 
+                <span id="error_icon"></span>
                   New York</label
                 >
                 <input
@@ -147,7 +151,7 @@
                   value="San Francisco"
                 />
                 <label class="checkbox-label" for="location2">
-                  <span class="checkbox-icon"></span>
+                  <span class="checkbox-icon" id="icon2"></span>
                   San Francisco</label
                 >
                 <input

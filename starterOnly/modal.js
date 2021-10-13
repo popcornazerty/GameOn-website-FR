@@ -11,30 +11,41 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
+// action de fermeture modal
+const closeModalBtn = document.querySelectorAll("#close");
+// test 
+
+
+
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+// Fermer modal event
 
+
+
+/////////
 // launch modal form
+
 function launchModal() {
   modalbg.style.display = "block";
 }
 
 // Fermer la modal
+closeModalBtn.forEach(elt => elt.addEventListener("click", closeModal));
 function closeModal() {
   modalbg.style.display = "none";
 }
-
-/*function displayElement(element) {
-  element.style.display = "none";
+/*
+window.onlick = function(event) {
+  if (event.target == modalbg) {
+    modalbg.style.display = "none";
+  }
 }
-closeModal(document.querySelector(".bground"));*/
+*/
 
-// Fermer la modal (event)
-document.getElementsByClassName('close')[0,1].onClick = function() {
-  closeModal();
-};
 
+//////////
 // Valider la modal
 function submitModal() {
   let validateForm = true;
@@ -52,6 +63,8 @@ function submitModal() {
     errorFirstName.innerText = '';
     inputFirstName.style.borderColor ='#ccc';
   }
+
+
 
   // Nom 
   const inputLastName = document.getElementById('last');
@@ -108,20 +121,49 @@ function submitModal() {
   
   /////////////////////////
 
-// Verification villes 
-const checkboxClicked = document.getElementsByClassName('checkbox-input');
-const errorClick = document.getElementsByClassName('errorclick');
-if (checkboxClicked.value = true){
-  errorClick.innerText='';
+// Verification qu'au moins une ville est cochée
+function submitModal() {
+  let checkboxInput = document.getElementsByClassName('checkbox-input');
+  let isChecked = false;
+      for (let i = 0; i < checkboxInput.length; i++) {
+          if (checkboxInput[i].checked) {
+              isChecked = true;
+          };
+      };
+      if (isChecked) {
+          alert('At least one checkbox checked!');
+          } else {
+              alert('Please, check at least one checkbox!');
+          }   
+  }
   
+
+// verification valeurs numériques uniquement
+//
+
+const inputQuantity = document.getElementById('quantity');
+const errorQuantity = document.getElementById('errorQuantity');
+if (validateNumber(inputQuantity.value)){
+  errorQuantity.innerText = '';
+  inputQuantity.style.borderColor =''
 } else {
-  errorClick.innerText = 'Merci de cocher au moins une ville';
-  //styles
-  errorClick.style.color = 'red';
-  errorClick.style.fontSize = '9px';
-  checkboxClicked.style.borderColor = 'red';
-  validationForm = false;
+  errorQuantity.innerText = 'Merci de renseigner des chiffres uniquement';
+  // Styles
+  errorQuantity.style.color = 'red';
+  errorQuantity.style.fontSize ='9px';
+  inputQuantity.style.borderColor = 'red';
+  validateForm = false;
 }
+
+
+//regex validation quantité
+function validateNumber(quantity) {
+const regex = /^\d+$/;
+return regex.test(quantity);
+}
+
+
+
 
 // regex validation email 
 function validateEmail(email) {
@@ -139,11 +181,6 @@ function validateDate(date) {
     alert("Merci ce cocher la case \"J'ai lu et accepté les conditions d'utilisation.\"");
     validateForm = false;
   } 
-  if (document.getElementById('checkbox2').checked == false){
-    alert("Merci ce cocher la case \"Je souhaite être prévenu des prochains évènements.\""); 
-    validateForm = false;
-  }
-
   if(validateForm) {
     // redirection
     closeModal();
@@ -171,6 +208,8 @@ function closeModalSuccess() {
 document.getElementsByClassName('btn-submit')[0].onclick = function() {
   submitModal();
 }
+
+
 
 
 
