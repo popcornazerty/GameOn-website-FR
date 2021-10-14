@@ -11,6 +11,7 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
+const modalSuccess = document.querySelector(".modal-success");
 // action de fermeture modal
 const closeModalBtn = document.querySelectorAll("#close");
 // test 
@@ -31,11 +32,14 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-// Fermer la modal
+// Fermer la premiere modale
 closeModalBtn.forEach(elt => elt.addEventListener("click", closeModal));
 function closeModal() {
   modalbg.style.display = "none";
+  modalSuccess.style.display = "none";
 }
+
+
 /*
 window.onlick = function(event) {
   if (event.target == modalbg) {
@@ -121,21 +125,25 @@ function submitModal() {
   
   /////////////////////////
 
-// Verification qu'au moins une ville est cochée
-function submitModal() {
-  let checkboxInput = document.getElementsByClassName('checkbox-input');
+// Verification qu'au moins une ville est cochée si le nombre de tournois est > 1
+  
+  const checkboxInput = document.getElementsByClassName('checkbox-input');
   let isChecked = false;
       for (let i = 0; i < checkboxInput.length; i++) {
           if (checkboxInput[i].checked) {
               isChecked = true;
           };
+          if (validateNumber.quantity > 0) {
+            isChecked = true;
+          }
       };
       if (isChecked) {
-          alert('At least one checkbox checked!');
-          } else {
-              alert('Please, check at least one checkbox!');
+          alert('');
+          } 
+          else {
+              alert('Merci de selectionner une ville');
           }   
-  }
+        
   
 
 // verification valeurs numériques uniquement
@@ -158,7 +166,7 @@ if (validateNumber(inputQuantity.value)){
 
 //regex validation quantité
 function validateNumber(quantity) {
-const regex = /^\d+$/;
+const regex = /^[\s\d]*$/;
 return regex.test(quantity);
 }
 
