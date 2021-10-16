@@ -64,7 +64,7 @@
 
       </div>
 
-      <div class="bground">
+      <div class="bground" id="bground1">
         <div class="content">
           <span class="close" id="close"></span>
           <div class="modal-body">
@@ -73,7 +73,7 @@
               action="index.html"
               method="get"
               onsubmit="return validate();"
-            >
+             id="form-inscription">
               <div
                 class="formData">
                 <label>Prénom</label><br>
@@ -131,7 +131,7 @@
               <div
                 class="formData">
                 <input
-                  class="checkbox-input"
+                  class="checkbox-input city"
                   type="radio"
                   id="location1"
                   name="location"
@@ -144,7 +144,7 @@
                   New York</label
                 >
                 <input
-                  class="checkbox-input"
+                  class="checkbox-input city"
                   type="radio"
                   id="location2"
                   name="location"
@@ -155,7 +155,7 @@
                   San Francisco</label
                 >
                 <input
-                  class="checkbox-input"
+                  class="checkbox-input city"
                   type="radio"
                   id="location3"
                   name="location"
@@ -166,7 +166,7 @@
                   Seattle</label
                 >
                 <input
-                  class="checkbox-input"
+                  class="checkbox-input city"
                   type="radio"
                   id="location4"
                   name="location"
@@ -177,7 +177,7 @@
                   Chicago</label
                 >
                 <input
-                  class="checkbox-input"
+                  class="checkbox-input city"
                   type="radio"
                   id="location5"
                   name="location"
@@ -188,7 +188,7 @@
                   Boston</label
                 >
                 <input
-                  class="checkbox-input"
+                  class="checkbox-input city"
                   type="radio"
                   id="location6"
                   name="location"
@@ -212,7 +212,7 @@
                 />
                 <label class="checkbox2-label" for="checkbox1" required>
                   <span class="checkbox-icon"></span>
-                  J'ai lu et accepté les conditions d'utilisation.
+                 <span id="conditionUtilisation"> J'ai lu et accepté les conditions d'utilisation.</span>
                 </label>
                 <br>
                 <span id="errorCheckbox"></span>

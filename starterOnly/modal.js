@@ -13,14 +13,17 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const modalSuccess = document.querySelector(".modal-success");
 // action de fermeture modal
-const closeModalBtn = document.querySelectorAll("#close");
+const closeModalBtn = document.querySelectorAll(".close");
 // test 
 
 
 
 
 // launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+modalBtn.forEach((btn) => btn.addEventListener("click", function() {
+  
+  launchModal();
+}));
 // Fermer modal event
 
 
@@ -32,22 +35,16 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-// Fermer la premiere modale
+// Attache un événement aux éléments contenue dans closeModalBtn (toutes les classes .close)
 closeModalBtn.forEach(elt => elt.addEventListener("click", closeModal));
+
+
 function closeModal() {
   modalbg.style.display = "none";
   modalSuccess.style.display = "none";
 }
 
-
-/*
-window.onlick = function(event) {
-  if (event.target == modalbg) {
-    modalbg.style.display = "none";
-  }
-}
-*/
-
+// vider autofill background des input
 
 //////////
 // Valider la modal
@@ -127,24 +124,43 @@ function submitModal() {
 
 // Verification qu'au moins une ville est cochée si le nombre de tournois est > 1
   
-  const checkboxInput = document.getElementsByClassName('checkbox-input');
+  /*const checkboxInput = document.getElementsByClassName('checkbox-input');
   let isChecked = false;
       for (let i = 0; i < checkboxInput.length; i++) {
-          if (checkboxInput[i].checked) {
+          if (checkboxInput[i].checked && validateNumber.value > 0) {
               isChecked = true;
           };
-          if (validateNumber.quantity > 0) {
-            isChecked = true;
-          }
+         
       };
       if (isChecked) {
           alert('');
           } 
           else {
-              alert('Merci de selectionner une ville');
+              alert('Merci de selectionner une ville et de renseigner le nombre de tournois');
           }   
         
-  
+  */
+const nombreDeTournois = document.getElementById('quantity');
+let isValid = false;
+if (nombreDeTournois.value > 0) {
+ const checkboxInput = document.getElementsByClassName('city');
+ for (let checkbox of checkboxInput) {
+   if (checkbox.checked) {
+     isValid = true;
+   }
+ }
+}
+
+if (isValid) {// quantité > 0 ET au moins une ville de cocher
+  // Pas d'erreur (formulaire valide)
+} else {
+  // Erreur
+  alert('Merci de selectionner une ville et de renseigner le nombre de tournois');
+}
+
+
+
+
 
 // verification valeurs numériques uniquement
 //
@@ -184,19 +200,23 @@ function validateDate(date) {
   return regex.test(date);
 }
   // Vérifications de l'acceptation des termes et conditions
-  
+  // changement couleur texte rouge si non acceptation conditions 
+  const erreurUtilisation = document.getElementById("conditionUtilisation");
   if (document.getElementById('checkbox1').checked == false) {
     alert("Merci ce cocher la case \"J'ai lu et accepté les conditions d'utilisation.\"");
+    erreurUtilisation.style.color = 'red';
     validateForm = false;
   } 
   if(validateForm) {
     // redirection
     closeModal();
     openModalSuccess();
-    closeModalSuccess();  
+    closeModalSuccess(); 
+    document.getElementById('form-inscription').reset(); 
   }
 
 }
+
 
 function openModalSuccess() {
   const modalSuccess = document.getElementById('modal-success');
@@ -210,12 +230,49 @@ function closeModalSuccess() {
     const modalSuccess = document.getElementById('modal-success');
     modalSuccess.style.display = "none";
     console.log("close modal success");
+
   }
 }
 
-document.getElementsByClassName('btn-submit')[0].onclick = function() {
+
+document.querySelector(".btn-submit").onclick = function() {
   submitModal();
+};
+
+
+
+//Prevent scroll when modal is open
+
+// When the modal is shown, we want a fixed body
+document.body.style.position = 'fixed';
+document.body.style.top = `-${window.scrollY}px`;
+
+// When the modal is hidden, we want to remain at the top of the scroll position
+const scrollY = document.body.style.top;
+document.body.style.position = '';
+document.body.style.top = '';
+window.scrollTo(0, parseInt(scrollY || '0') * -1);
+//
+
+
+const showDialog = () => {
+  document.getElementById('bground1').classList.add('show')
+  const scrollY = document.documentElement.style.getPropertyValue('--scroll-y');
+  const body = document.body;
+  body.style.position = 'fixed';
+  body.style.top = `-${scrollY}`;
+};
+const closeDialog = () => {
+  const body = document.body;
+  const scrollY = body.style.top;
+  body.style.position = '';
+  body.style.top = '';
+  window.scrollTo(0, parseInt(scrollY || '0') * -1);
+  document.getElementById('bground1').classList.remove('show');
 }
+window.addEventListener('scroll', () => {
+  document.documentElement.style.setProperty('--scroll-y', `${window.scrollY}px`);
+});
 
 
 

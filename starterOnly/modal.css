@@ -165,11 +165,19 @@ main {
   position: fixed;
   z-index: 1;
   left: 0;
-  top: 0;
+  top: 0px;
   height: 100%;
   width: 100%;
   overflow: auto;
   background-color: rgba(26, 39, 156, 0.4);
+  backdrop-filter: blur(8px);
+}
+/* Remove autofill color blue*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
 .content {
@@ -193,6 +201,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 #modal-success-close{
   position: absolute;
