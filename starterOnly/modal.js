@@ -33,6 +33,7 @@ modalBtn.forEach((btn) => btn.addEventListener("click", function() {
 
 function launchModal() {
   modalbg.style.display = "block";
+  document.body.style.overflow = 'hidden';
 }
 
 // Attache un événement aux éléments contenue dans closeModalBtn (toutes les classes .close)
@@ -42,6 +43,7 @@ closeModalBtn.forEach(elt => elt.addEventListener("click", closeModal));
 function closeModal() {
   modalbg.style.display = "none";
   modalSuccess.style.display = "none";
+  document.body.style.overflow = 'visible';
 }
 
 // vider autofill background des input
@@ -93,7 +95,7 @@ function submitModal() {
     errorEmail.innerText = '';
     inputEmail.style.borderColor ='#ccc';
     inputEmail.style.backgroundColor ='#fff';
-    // CSS à faire
+    
 
   } else {
     errorEmail.innerText = 'Veuillez entrer une adresse email valide.';
@@ -118,28 +120,10 @@ function submitModal() {
     inputDate.style.borderColor = 'red';
     validateForm = false;
   }
-  ////////////////////////////
-  
-  /////////////////////////
+ 
 
 // Verification qu'au moins une ville est cochée si le nombre de tournois est > 1
-  
-  /*const checkboxInput = document.getElementsByClassName('checkbox-input');
-  let isChecked = false;
-      for (let i = 0; i < checkboxInput.length; i++) {
-          if (checkboxInput[i].checked && validateNumber.value > 0) {
-              isChecked = true;
-          };
-         
-      };
-      if (isChecked) {
-          alert('');
-          } 
-          else {
-              alert('Merci de selectionner une ville et de renseigner le nombre de tournois');
-          }   
-        
-  */
+/*
 const nombreDeTournois = document.getElementById('quantity');
 let isValid = false;
 if (nombreDeTournois.value > 0) {
@@ -153,11 +137,13 @@ if (nombreDeTournois.value > 0) {
 
 if (isValid) {// quantité > 0 ET au moins une ville de cocher
   // Pas d'erreur (formulaire valide)
+  document.getElementById('btn-sub').disabled = false;
 } else {
   // Erreur
   alert('Merci de selectionner une ville et de renseigner le nombre de tournois');
+  document.getElementById('btn-sub').disabled = true;
 }
-
+*/
 
 
 
@@ -182,11 +168,17 @@ if (validateNumber(inputQuantity.value)){
 
 //regex validation quantité
 function validateNumber(quantity) {
-const regex = /^[\s\d]*$/;
-return regex.test(quantity);
+    
+    alert(Number.isInteger(quantity))
+
 }
-
-
+ //OR
+/*
+ function validateNumber(quantity) {
+  const regex = /^[\s\d]*$/;
+  return regex.test(quantity);
+  }
+*/
 
 
 // regex validation email 
@@ -221,6 +213,7 @@ function validateDate(date) {
 function openModalSuccess() {
   const modalSuccess = document.getElementById('modal-success');
   modalSuccess.style.display = "block";
+  document.body.style.overflow = 'hidden';
   
 }
 
@@ -230,6 +223,7 @@ function closeModalSuccess() {
     const modalSuccess = document.getElementById('modal-success');
     modalSuccess.style.display = "none";
     console.log("close modal success");
+    document.body.style.oberflow = 'visible';
 
   }
 }
@@ -238,93 +232,3 @@ function closeModalSuccess() {
 document.querySelector(".btn-submit").onclick = function() {
   submitModal();
 };
-
-
-
-//Prevent scroll when modal is open
-
-// When the modal is shown, we want a fixed body
-document.body.style.position = 'fixed';
-document.body.style.top = `-${window.scrollY}px`;
-
-// When the modal is hidden, we want to remain at the top of the scroll position
-const scrollY = document.body.style.top;
-document.body.style.position = '';
-document.body.style.top = '';
-window.scrollTo(0, parseInt(scrollY || '0') * -1);
-//
-
-
-const showDialog = () => {
-  document.getElementById('bground1').classList.add('show')
-  const scrollY = document.documentElement.style.getPropertyValue('--scroll-y');
-  const body = document.body;
-  body.style.position = 'fixed';
-  body.style.top = `-${scrollY}`;
-};
-const closeDialog = () => {
-  const body = document.body;
-  const scrollY = body.style.top;
-  body.style.position = '';
-  body.style.top = '';
-  window.scrollTo(0, parseInt(scrollY || '0') * -1);
-  document.getElementById('bground1').classList.remove('show');
-}
-window.addEventListener('scroll', () => {
-  document.documentElement.style.setProperty('--scroll-y', `${window.scrollY}px`);
-});
-
-
-
-
-
-/*
-const inputCheckbox = document.getElementById('checkbox1');
-const errorCheckbox = document.getElementById ('errorCheckbox');
-if (validateCheckbox(inputCheckbox.value.checked = true)){
-  
-}
-else{
-  errorCheckbox.innerText = 'Veuillez accepter les termes et conditions';
-}
-*/
-
-
-/*
-let userLoggedIn = true;
-
-if (userLoggedIn) {
-   let welcomeMessage = 'Welcome back!';
-} else {
-   let welcomeMessage = 'Welcome new user!';
-}
-
-console.log(welcomeMessage); // renvoie une erreur
-
-
-//OR
-/*
-let userLoggedIn = true;
-let welcomeMessage = ''; // déclarer la variable ici
-
-if (userLoggedIn) {
-welcomeMessage = 'Welcome back!'; // modifier la variable extérieure
-} else {
-welcomeMessage = 'Welcome new user!'; // modifier la variable extérieure
-}
-
-console.log(welcomeMessage); // imprime 'Welcome back!'
-
-
-//OR
-
-if (firstUser.accountLevel === 'normal' ) {
-        console.log('You have a normal account!');
-  } else if (firstUser.accountLevel === 'premium' ) {
-        console.log('You have a premium account!');
-  } else if (firstUser.accountLevel === 'mega-premium' ) {
-        console.log('You have a mega premium account!');
-  }  else {
-        console.log('Unknown account type!');
-  }
-*/
