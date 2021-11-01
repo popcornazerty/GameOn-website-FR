@@ -48,69 +48,6 @@ function closeModal() {
   document.body.style.overflow = 'visible';
 }
 
-// vider autofill background des input
-
-//////////
-/*
-// Valider la modal
-function submitModal() {
-let validateForm = true;
-// Prénom
-const inputFirstName = document.getElementById('first');
-const errorFirstName = document.getElementById('firstError');
-if (inputFirstName.value.length < 2) {
-  errorFirstName.innerText = 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.';
-  // Styles
-  errorFirstName.style.color = 'red';
-  errorFirstName.style.fontSize = '9px';
-  inputFirstName.style.borderColor = 'red';
-  validateForm = false;
-} else {
-  errorFirstName.innerText = '';
-  inputFirstName.style.borderColor ='#ccc';
-}
-*/
-//TEST PRENOM
-
-/*
-const nameValue = document.getElementById("first").value;
-
-
-function validateForm(){
-/*
-  if( validateName(nameValue, 'Veuillez entrer 2 caractères ou plus pour le champ du nom.') === true &&  validateSurname(surnameValue, 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.') === true){
-  
-       // Affichage message formulaire valide
-  
-  }
-
-
-alert("test")
-validateName(nameValue, 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.');
-
-}
-
-
-const inputFirstName = document.getElementById('first');
-function validateName(first, message){
-
- if(first === "" || first.length < 2){
-  
-  errorFirstName.style.color = 'red';
-  errorFirstName.style.fontSize = '9px';
-  inputFirstName.style.borderColor = 'red';
-     return message;
-      
- }else{
-  inputFirstName.innerText = '';
-    inputFirstName.style.borderColor ='#ccc';
-     return true;
-     
- 
- }
-
-}
-*/
 
 
 
@@ -269,20 +206,20 @@ function validateCity(city, domNode, errorMessage) {
 
 // Checkbox Validation 
 function validateCondition(usageCondition, domNode, errorMessage) {
-  let checked = false;
-  if (validateCondition.value = checked) {
+  let checked = true;
+  if (usageCondition.checked) {
       usageCondition.style.border = 'none';
       domNode.classList.remove("errorMessage");
       domNode.innerText = '';
       return true;
+
   } else {
-
-
       usageCondition.style.border = "3px solid red";
       domNode.classList.add("errorMessage");
       domNode.innerText = errorMessage;
       //conditionUtilisation.style.color = 'red';
       return false;
+
   }
 }
 
@@ -294,24 +231,3 @@ function openModalSuccess() {
   document.body.style.overflow = 'hidden';
 
 }
-/*
-function closeModalSuccess() {
-const modalSuccessBtn = document.getElementById('modal-success-close');
-modalSuccessBtn.onclick = function() {
-  const modalSuccess = document.getElementById('modal-success');
-  modalSuccess.style.display = "none";
-  console.log("close modal success");
-  document.body.style.oberflow = 'visible';
-
-}
-}
-*/
-
-/*
-document.getElementById('modal-success-close').addEventListener('onclick', function(){
-const modalSuccess = document.getElementById('modal-success');
-modalSuccess.style.display = 'none';
-document.body.style.oberflow = 'visible';
-}
-
-*/
