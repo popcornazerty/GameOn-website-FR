@@ -184,7 +184,6 @@ input:-webkit-autofill:active  {
 .content {
   margin: 5% auto;
   width: 100%;
-  
   max-width: 500px;
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
@@ -198,11 +197,13 @@ input:-webkit-autofill:active  {
 }
 .confirmation{
   height: 100%;
+  width: 100%;
   margin-top: 68px;
   display: flex;
   justify-content: center;
   align-items: center;
-  
+  padding: 15px 8%;
+  margin: auto;
 }
 #modal-success-close{
   position: absolute;
@@ -221,7 +222,8 @@ input:-webkit-autofill:active  {
 
 .modal-body {
   padding: 15px 8%;
-  margin: 15px auto;
+  margin: auto;
+  height: 100%;
 }
 
 label {

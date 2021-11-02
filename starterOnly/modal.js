@@ -88,7 +88,7 @@ document.getElementById('btn-sub').addEventListener('click', function() {
 
   } else {
       // Erreur dans le formulaire
-      alert('Merci de remplir l\'intégralité du formulaire');
+      
   }
 
 });
