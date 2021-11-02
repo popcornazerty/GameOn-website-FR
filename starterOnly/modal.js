@@ -7,6 +7,7 @@ function editNav() {
   }
 }
 
+document.getElementById('editNav').addEventListener("click", editNav);
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
