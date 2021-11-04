@@ -51,9 +51,9 @@ function closeModal() {
 
 
 
-
+//Submission du formulaire 
 document.getElementById('btn-sub').addEventListener('click', function() {
-  //Prénom
+  
   const prenom = document.getElementById("firstName");
   const nom = document.getElementById("lastName");
   const errorFirstName = document.getElementById("errorFirstName");
@@ -70,7 +70,7 @@ document.getElementById('btn-sub').addEventListener('click', function() {
   const errorCondition = document.getElementById('errorCheckbox');
 
 
-
+// si les conditions suivantes sont remplies, sinon renvoie du message d'erreur associé 
   if (
       validateName(prenom, errorFirstName, "Merci de renseigner un prenom supérieur à deux caractères") === true &&
       validateName(nom, errorLastName, "Merci de renseigner un nom supérieur à deux caractères") === true &&
@@ -87,7 +87,7 @@ document.getElementById('btn-sub').addEventListener('click', function() {
       openModalSuccess();
 
   } else {
-      // Erreur dans le formulaire
+      // le champ associé est valide
       
   }
 
@@ -95,7 +95,6 @@ document.getElementById('btn-sub').addEventListener('click', function() {
 
 function validateName(name, domNode, errorMessage) {
   if (name.value === "" || name.value.length < 2) {
-      // Lire l'api classList
       name.style.border = "3px solid red";
       domNode.classList.add("errorMessage");
       domNode.innerText = errorMessage;
@@ -112,9 +111,6 @@ function validateName(name, domNode, errorMessage) {
 
 
 // Email
-
-
-
 function validateEmail(email, domNode, errorMessage) {
   if (regexEmail(email.value) == false) {
       // Lire l'api classList
@@ -139,7 +135,7 @@ function regexEmail(email) {
 }
 
 
-//date de naissance
+
 //regex validation date de naissance
 function validateDate(date) {
   const regex = /^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$/;
@@ -182,7 +178,7 @@ function validateQuantity(quantity, domNode, errorMessage) {
       return false;
   }
 }
-
+// Verification si une ville est bien selectionnée, sinon renvoie message d'erreur
 function validateCity(city, domNode, errorMessage) {
   let isValid = false;
   for (let c of city) {
