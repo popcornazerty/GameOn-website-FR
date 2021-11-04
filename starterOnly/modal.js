@@ -92,7 +92,7 @@ document.getElementById('btn-sub').addEventListener('click', function() {
   }
 
 });
-
+//Nom, prenom
 function validateName(name, domNode, errorMessage) {
   if (name.value === "" || name.value.length < 2) {
       name.style.border = "3px solid red";
